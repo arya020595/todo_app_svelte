@@ -1,38 +1,29 @@
-# create-svelte
+# SvelteKit Todos App
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This is a simple Todos application built using SvelteKit and integrated with MongoDB for data storage.
 
-## Creating a project
+## Prerequisites
 
-If you're seeing this, you've probably already done this step. Congrats!
+Before running the project, ensure you have the following installed:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- Node.js and npm (Node Package Manager)
+- MongoDB Atlas account and cluster setup
+- Git (optional, for cloning the repository)
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## Getting Started
 
-## Developing
+Follow these steps to set up and run the project locally:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Clone the repository
+- git clone https://github.com/arya020595/todo_app_svelte.git
+- cd todo_app_svelte
 
-```bash
-npm run dev
+### Install dependencies
+```npm install```
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### Setup Environment Variables
+- Create a .env file
+- Add `MONGODB_URI=your_mongodb_uri`
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+### Start the Development Server
+```npm run dev```

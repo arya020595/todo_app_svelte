@@ -31,6 +31,7 @@
 		const result = schema.safeParse({ title, completed });
 		if (!result.success) {
 			error.set(result.error.errors[0].message);
+			setTimeout(() => error.set(null), 2000); // Clear error message after 2 seconds
 			return;
 		}
 		const res = await fetch('/api/todos', {
@@ -98,15 +99,17 @@
 </script>
 
 <main class="p-4">
-	<h1 class="text-2xl mb-4 text-center">Todos</h1>
+	<h1 class="text-2xl mb-4 text-center">Welcome to Todos App!</h1>
 	<div class="text-center">
-		<input bind:value={title} type="text" placeholder="Title" class="border p-2" />
-		<button on:click={addTodo} class="bg-blue-500 text-white p-2 ml-2">Add</button>
+		<input bind:value={title} type="text" placeholder="Please Insert Todo.." class="border p-2" />
+		<button on:click={addTodo} class="bg-blue-500 text-white p-2 m-2 rounded hover:rounded-lg"
+			>Add</button
+		>
 		{#if $error}
 			<p class="text-red-500 mt-2">{$error}</p>
 		{/if}
 	</div>
-	<ul class="mt-4">
+	<ul class="mt-4 w-full sm:w-auto">
 		{#each $todos as todo (todo._id)}
 			<li class="border p-2 mb-2 flex items-center">
 				<input
@@ -129,7 +132,7 @@
 					}}
 					class="ml-2"
 				/>
-				<button on:click={() => deleteTodo(todo._id)} class="bg-red-500 text-white p-1 ml-2"
+				<button on:click={() => deleteTodo(todo._id)} class="bg-red-500 text-white p-2 ml-2"
 					>Delete</button
 				>
 			</li>

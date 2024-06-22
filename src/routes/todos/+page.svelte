@@ -20,8 +20,8 @@
 	onMount(loadTodos);
 
 	const schema = z.object({
-		title: z.string().nonempty({ message: 'Title is required' }),
-		completed: z.boolean().optional()
+		title: z.string().min(1, { message: 'Title is required' }),
+		completed: z.boolean()
 	});
 
 	let title = '';
@@ -49,6 +49,11 @@
 	};
 
 	const updateTodo = async (id: string, newTitle: string) => {
+		const result = schema.safeParse({ title: newTitle, completed });
+		if (!result.success) {
+			error.set(result.error.errors[0].message);
+			return;
+		}
 		const res = await fetch(`/api/todos/${id}`, {
 			method: 'PUT',
 			headers: {
@@ -93,8 +98,8 @@
 </script>
 
 <main class="p-4">
-	<h1 class="text-2xl mb-4">Todos</h1>
-	<div>
+	<h1 class="text-2xl mb-4 text-center">Todos</h1>
+	<div class="text-center">
 		<input bind:value={title} type="text" placeholder="Title" class="border p-2" />
 		<button on:click={addTodo} class="bg-blue-500 text-white p-2 ml-2">Add</button>
 		{#if $error}
@@ -124,7 +129,7 @@
 					}}
 					class="ml-2"
 				/>
-				<button on:click={() => deleteTodo(todo._id)} class="bg-red-500 text-white p-2 ml-2"
+				<button on:click={() => deleteTodo(todo._id)} class="bg-red-500 text-white p-1 ml-2"
 					>Delete</button
 				>
 			</li>

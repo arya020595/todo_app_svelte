@@ -53,6 +53,7 @@
 		const result = schema.safeParse({ title: newTitle, completed });
 		if (!result.success) {
 			error.set(result.error.errors[0].message);
+			setTimeout(() => error.set(null), 2000); // Clear error message after 2 seconds
 			return;
 		}
 		const res = await fetch(`/api/todos/${id}`, {

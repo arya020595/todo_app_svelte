@@ -3,7 +3,7 @@
 This is a simple Todos application built using SvelteKit and integrated with MongoDB for data storage.
 
 ## Demo App
-Check out the live demo: [Todos App](https://todo-app-svelte-icqxbm60e-arya020595s-projects.vercel.app/todos)
+Check out the live demo: [Todos App](https://todo-app-svelte-ten.vercel.app/todos)
 
 ## Prerequisites
 
